@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
@@ -11,7 +12,11 @@ import { ProductsComponent } from './products/products.component';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    MatCardModule,
+    ProductsRoutingModule,
+  ],
+  exports: [
+    ProductsComponent
   ]
 })
 export class ProductsModule { }

@@ -1,1 +1,13 @@
-<p>products works!</p>
+<mat-card class="products-card" *ngFor="let product of products">
+  <mat-card-title-group>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>R$ {{ product.unitValue }}</mat-card-subtitle>
+    <img
+      mat-card-xl-image
+      src='{{ product.urlImage}}'
+    />
+  </mat-card-title-group>
+  <mat-card-content>
+    {{ product.description }}
+  </mat-card-content>
+</mat-card>
