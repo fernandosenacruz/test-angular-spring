@@ -16,7 +16,7 @@ import { ProductsModule } from './products/products.module';
     BrowserAnimationsModule,
     MatToolbarModule,
     ProductsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

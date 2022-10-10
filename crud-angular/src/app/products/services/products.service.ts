@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import products from 'src/app/utils/products';
+import { first } from 'rxjs';
 
 import { Product } from './../products/interfaces/product';
 
@@ -8,9 +8,11 @@ import { Product } from './../products/interfaces/product';
   providedIn: 'root',
 })
 export class ProductsService {
+  private readonly API = '/assets/products.json';
+
   constructor(private httpClient: HttpClient) {}
 
-  list(): Product[] {
-    return products;
+  list() {
+    return this.httpClient.get<Product[]>(this.API).pipe(first());
   }
 }

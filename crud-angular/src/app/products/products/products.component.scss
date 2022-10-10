@@ -1,0 +1,18 @@
+.products-card {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 3rem;
+}
