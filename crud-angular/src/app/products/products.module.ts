@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 
+import { AppMaterialModule } from '../shered/app-material/app-material.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
 
@@ -12,7 +12,7 @@ import { ProductsComponent } from './products/products.component';
   ],
   imports: [
     CommonModule,
-    MatCardModule,
+    AppMaterialModule,
     ProductsRoutingModule,
   ],
   exports: [

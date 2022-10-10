@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +16,7 @@ import { ProductsModule } from './products/products.module';
     BrowserAnimationsModule,
     MatToolbarModule,
     ProductsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
