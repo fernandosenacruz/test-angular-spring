@@ -1,16 +1,23 @@
 [
   {
-    "_id": "abc123",
+    "_id": 1,
     "name": "produto 01",
     "description": "produto de exemplo 01",
     "urlImage": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-    "unitValue": 4084.9
+    "unitValue": 4084.90
   },
   {
-    "_id": "def456",
+    "_id": 2,
     "name": "produto 02",
     "description": "produto de exemplo 02",
     "urlImage": "https://http2.mlstatic.com/D_NQ_NP_925574-MLA51178257760_082022-W.jpg",
     "unitValue": 229.99
+  },
+  {
+    "_id": 3,
+    "name": "produto 03",
+    "description": "produto de exemplo 03",
+    "urlImage": "https://cdn.nerdstore.com.br/wp-content/uploads/2022/02/vitrine-camiseta-ximira-xelo-estampa-nerdstore.jpg",
+    "unitValue": 99.90
   }
 ]
