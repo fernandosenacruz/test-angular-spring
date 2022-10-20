@@ -15,4 +15,8 @@ export class ProductsService {
   list() {
     return this.httpClient.get<Product[]>(this.API).pipe(first());
   }
+
+  save(record: Product) {
+    return this.httpClient.post<Product>(this.API, record);
+  }
 }
