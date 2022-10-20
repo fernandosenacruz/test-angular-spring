@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "Products",
-    "CRUD"
+    "CRUD",
+    "Register"
   ]
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppMaterialModule } from '../shered/app-material/app-material.module';
 import { SharedModule } from '../shered/shared.module';
@@ -11,8 +12,9 @@ import { RegisterProductComponent } from './register-product/register-product.co
   declarations: [ProductsComponent, RegisterProductComponent],
   imports: [
     CommonModule,
-    AppMaterialModule,
     SharedModule,
+    AppMaterialModule,
+    ReactiveFormsModule,
     ProductsRoutingModule,
   ],
   exports: [ProductsComponent],
