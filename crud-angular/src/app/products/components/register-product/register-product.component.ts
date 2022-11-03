@@ -1,8 +1,8 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ProductsService } from './../services/products.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-register-product',
@@ -10,20 +10,20 @@ import { ProductsService } from './../services/products.service';
   styleUrls: ['./register-product.component.scss'],
 })
 export class RegisterProductComponent implements OnInit {
-  form: FormGroup;
+  form = this.formBuilder.group({
+    // não nulo direto no campo
+    // name: new FormControl('', { nonNullable: true }),
+    name: [''],
+    description: [''],
+    urlImage: [''],
+    unitValue: [0],
+  });
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: ProductsService,
     private _snackBar: MatSnackBar
-  ) {
-    this.form = this.formBuilder.group({
-      name: [null],
-      description: [null],
-      urlImage: [null],
-      unitValue: [null],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -40,5 +40,7 @@ export class RegisterProductComponent implements OnInit {
     });
   }
 
-  onClear() {}
+  onClear() {
+    this.form.reset();
+  }
 }

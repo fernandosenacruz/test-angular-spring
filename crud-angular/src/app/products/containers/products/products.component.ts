@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shered/components/error-dialog/error-dialog.component';
 
-import { ProductsService } from './../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { Product } from './interfaces/product';
 
 @Component({

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs';
 
-import { Product } from './../products/interfaces/product';
+import { Product } from '../containers/products/interfaces/product';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(this.API).pipe(first());
   }
 
-  save(record: Product) {
+  save(record: Partial<Product>) {
     return this.httpClient.post<Product>(this.API, record);
   }
 }
