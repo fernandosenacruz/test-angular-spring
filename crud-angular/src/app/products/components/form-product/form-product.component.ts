@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../../services/products.service';
 
 @Component({
-  selector: 'app-register-product',
-  templateUrl: './register-product.component.html',
-  styleUrls: ['./register-product.component.scss'],
+  selector: 'app-form-product',
+  templateUrl: './form-product.component.html',
+  styleUrls: ['./form-product.component.scss'],
 })
-export class RegisterProductComponent implements OnInit {
+export class FormProductComponent implements OnInit {
   form = this.formBuilder.group({
     // não nulo direto no campo
     // name: new FormControl('', { nonNullable: true }),
@@ -22,7 +23,8 @@ export class RegisterProductComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private service: ProductsService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
