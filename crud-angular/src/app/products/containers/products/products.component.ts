@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
@@ -16,6 +17,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private ProductsService: ProductsService,
+    private router: Router,
+    private route: ActivatedRoute,
     public dialog: MatDialog
   ) {
     this.products$ = this.ProductsService.list().pipe(
@@ -34,4 +37,10 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onEdit(product: Product) {
+    this.router.navigate(['edit', product._id], { relativeTo: this.route });
+  }
+
+  onDelete(product: Product) {}
 }

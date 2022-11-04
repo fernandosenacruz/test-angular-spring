@@ -16,6 +16,10 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(this.API).pipe(first());
   }
 
+  loadById(id: string) {
+    return this.httpClient.get<Product>(`${this.API}/${id}`);
+  }
+
   save(record: Partial<Product>) {
     return this.httpClient.post<Product>(this.API, record);
   }

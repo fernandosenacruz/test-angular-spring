@@ -1,20 +1,30 @@
 <mat-card *ngFor="let product of products">
-      <div class="product-card">
-        <mat-card-title-group>
-          <mat-card-title>{{ product.name }}</mat-card-title>
-          <mat-card-subtitle>R$ {{ product.unitValue }}</mat-card-subtitle>
-          <img mat-card-xl-image src="{{ product.urlImage }}" />
-        </mat-card-title-group>
-        <mat-card-content>
-          {{ product.description }}
-        </mat-card-content>
-        <!-- <div class="buttons-card">
-          <button mat-icon-button color="primary" aria-label="Adicionar">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" aria-label="Remover">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div> -->
-      </div>
-    </mat-card>
+  <div class="product-card">
+    <mat-card-title-group>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>R$ {{ product.unitValue }}</mat-card-subtitle>
+      <img mat-card-xl-image src="{{ product.urlImage }}" />
+    </mat-card-title-group>
+    <mat-card-content>
+      {{ product.description }}
+    </mat-card-content>
+    <div class="buttons-card">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Editar"
+        (click)="onEdit(product)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Remover"
+        (click)="onDelete(product)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

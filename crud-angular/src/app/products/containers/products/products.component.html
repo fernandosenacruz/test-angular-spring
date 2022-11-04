@@ -5,6 +5,8 @@
     class="products-card"
     *ngIf="products$ | async as products; else loading"
     [products]="products"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
   ></app-product-list>
 
   <ng-template #loading>
