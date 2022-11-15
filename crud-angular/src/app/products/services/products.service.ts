@@ -35,4 +35,8 @@ export class ProductsService {
 
     return this.create(record);
   }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
 }
