@@ -5,44 +5,48 @@
 
   <mat-card-content>
     <form [formGroup]="form">
-      <mat-form-field appearance="legacy" class="full-width">
+      <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nome</mat-label>
-        <input matInput #name/>
-        <mat-hint style="align-items: end;">{{ name.value?.length || 0 }} / 100</mat-hint>
-        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMassage('name') }}</mat-error">
+        <input matInput #name formControlName="name" />
+        <mat-hint style="align-items: end;">
+          {{ name.value.length || 0 }} / 100
+        </mat-hint>
+        <mat-error *ngIf="form.get('name')?.invalid">
+          {{ getErrorMassage('name') }}
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="legacy" class="full-width">
+      <mat-form-field appearance="fill" class="full-width">
         <mat-label>Descrição</mat-label>
-        <input matInput #description />
-        <mat-hint style="align-items: end;">{{ description.value?.length || 0 }} / 255</mat-hint>
+        <input matInput #description formControlName="description" />
+        <mat-hint style="align-items: end;">
+          {{ description.value.length || 0 }} / 255
+        </mat-hint>
         <mat-error *ngIf="form.get('description')?.invalid">
           {{ getErrorMassage('description') }}
-        </mat-error">
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="legacy" class="full-width">
-        <mat-label>url da imagem</mat-label>
-        <input matInput #urlImage />
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>URL da Imagem</mat-label>
+        <input matInput #urlImage formControlName="urlImage" />
         <mat-error *ngIf="form.get('urlImage')?.invalid">
           {{ getErrorMassage('urlImage') }}
-        </mat-error">
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="legacy" class="full-width">
-        <mat-label>Valor unitário</mat-label>
-        <input matInput #unitValue type="number" />
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Valor Unitário</mat-label>
+        <input matInput #unitValue type="number" formControlName="unitValue" />
         <mat-error *ngIf="form.get('unitValue')?.invalid">
           {{ getErrorMassage('unitValue') }}
-        </mat-error">
+        </mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
 
   <mat-card-actions>
     <button mat-raised-button color="warn" (click)="onClear()">Limpar</button>
-    <button mat-raised-button color="primary" (click)="onSubmit()">
-      Cadastrar
-    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Cadastrar</button>
   </mat-card-actions>
 </mat-card>

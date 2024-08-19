@@ -1,18 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
-@import "@angular/material/theming";
-@include mat-core();
+@use '@angular/material' as mat;
 
-$custom-app-primary: mat-palette($mat-teal, A200);
-$custom-app-secondary: mat-palette($mat-purple, A200, A400, A700);
-$custom-app-warn: mat-palette($mat-red);
+@include mat.core();
 
-$custom-theme: mat-light-theme(
-  $custom-app-primary,
-  $custom-app-secondary,
-  $custom-app-warn
-);
+// Define the theme object.
+$crud-angular-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
 
-@include angular-material-theme($custom-theme);
+:root {
+  @include mat.all-component-themes($crud-angular-theme);
+}
 
 html,
 body {
