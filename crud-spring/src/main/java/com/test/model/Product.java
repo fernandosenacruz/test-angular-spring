@@ -31,4 +31,44 @@ public class Product {
   private String urlImage;
 
   private Double unitValue;
+
+public Object getName() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setName(Object name2) {
+	// TODO Auto-generated method stub
+	
+}
+
+public Object getDescription() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setDescription(Object description2) {
+	// TODO Auto-generated method stub
+	
+}
+
+public Object getUrlImage() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setUrlImage(Object urlImage2) {
+	// TODO Auto-generated method stub
+	
+}
+
+public Object getUnitValue() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void setUnitValue(Object unitValue2) {
+	// TODO Auto-generated method stub
+	
+}
 }
