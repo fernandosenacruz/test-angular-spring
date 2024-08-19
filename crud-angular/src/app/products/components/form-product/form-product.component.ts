@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,12 +13,10 @@ import { Product } from './../../containers/products/interfaces/product';
 })
 export class FormProductComponent implements OnInit {
   form = this.formBuilder.group({
-    // não nulo direto no campo
-    // name: new FormControl('', { nonNullable: true }),
     _id: [''],
-    name: [''],
-    description: [''],
-    urlImage: [''],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+    description: ['', [Validators.required, Validators.minLength(50), Validators.maxLength(255)]],
+    urlImage: ['', [Validators.required]],
     unitValue: [0],
   });
 
@@ -41,6 +39,29 @@ export class FormProductComponent implements OnInit {
     });
   }
 
+  getErrorMassage(fieldName: string) {
+    const field = this.form.get(fieldName);
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório';
+    }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 3;
+      return `O campo deve ter no minimo ${requiredLength} caracteres`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 100;
+      return `O campo deve ter no maximo ${requiredLength} caracteres`;
+    }
+
+    if (field?.hasError('unitValue')) {
+      return 'O valor unitário deve ser maior que zero';
+    }
+
+    return 'Campo inválido';
+  }
+
   private onError(err: any) {
     this._snackBar.open(`${err.message}`, '', {
       duration: 5000,
@@ -49,8 +70,8 @@ export class FormProductComponent implements OnInit {
 
   onSubmit() {
     this.service.save(this.form.value).subscribe({
-      next: (data) => console.log(data),
-      error: (err) => this.onError(err),
+      next: (data: Product) => console.log(data),
+      error: (err: any) => this.onError(err),
     });
   }
 
