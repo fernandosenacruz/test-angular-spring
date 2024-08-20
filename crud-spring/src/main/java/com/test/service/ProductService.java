@@ -1,12 +1,14 @@
 package com.test.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.test.model.Product;
+import com.test.dto.ProductDTO;
+import com.test.dto.mapper.ProductMapper;
 import com.test.repository.ProductRepository;
 
 import exception.RecordNotFoundException;
@@ -14,27 +16,33 @@ import exception.RecordNotFoundException;
 @Service
 public class ProductService {
 	private final ProductRepository productRepository;
+	private final ProductMapper productMapper;
 	
-	public ProductService(ProductRepository productRepository) {
+	public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
 		this.productRepository = productRepository;
+		this.productMapper = productMapper;
 	}
 	
-	public List<Product> getProducts() {
-	    return productRepository.findAll();
+	public List<ProductDTO> getProducts() {
+	    return productRepository.findAll()
+	    		.stream()
+	    		.map(productMapper::toDTO)
+	    		.collect(Collectors.toList());
 	}
 	
-	public Product getProductById(@PathVariable Long id) {
+	public ProductDTO getProductById(@PathVariable Long id) {
 	    return productRepository.findById(id)
+	    		.map(productMapper::toDTO)
 	    		.orElseThrow(() -> new RecordNotFoundException(id));
 	}
 	
-	public Product create(@RequestBody Product product) {
-	    return productRepository.save(product);
+	public ProductDTO create(@RequestBody ProductDTO product) {
+	    return productMapper.toDTO(productRepository.save(productMapper.toEntity(product)));
 	}
 	
-	public Product update(
+	public ProductDTO update(
 	  @PathVariable() Long id,
-	  @RequestBody Product product) {
+	  @RequestBody ProductDTO product) {
 	    return productRepository.findById(id)
 	        .map(p -> {
 	          p.setName(p.getName());
@@ -42,7 +50,7 @@ public class ProductService {
 	          p.setUrlImage(p.getUrlImage());
 	          p.setUnitValue(p.getUnitValue());
 	
-	          return productRepository.save(p);
+	          return productMapper.toDTO(productRepository.save(p));
         }).orElseThrow(() -> new RecordNotFoundException(id));
 	}
 

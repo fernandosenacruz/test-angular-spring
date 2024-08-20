@@ -6,10 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Data;
 
 @Data
 @Entity
@@ -31,7 +30,7 @@ public class Product {
   private String urlImage;
 
   @Column(length = 10, nullable = false)
-  private Double unitValue;
+  private double unitValue;
 
   public Long getId() {
     return id;
@@ -65,11 +64,60 @@ public class Product {
     this.urlImage = urlImage;
   }
 
-  public Double getUnitValue() {
+  public double getUnitValue() {
     return unitValue;
   }
 
   public void setUnitValue(Double unitValue) {
     this.unitValue = unitValue;
+  }
+  
+  private Product() {}
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  public static class Builder {
+    private Long id;
+    private String name;
+    private String description;
+    private String urlImage;
+    private Double unitValue;
+
+    public Builder id(Long id) {
+      this.id = id;
+      return this;
+    }
+
+    public Builder name(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder description(String description) {
+      this.description = description;
+      return this;
+    }
+
+    public Builder urlImage(String urlImage) {
+      this.urlImage = urlImage;
+      return this;
+    }
+
+    public Builder unitValue(Double unitValue) {
+      this.unitValue = unitValue;
+      return this;
+    }
+
+    public Product build() {
+      Product product = new Product();
+      product.id = this.id;
+      product.name = this.name;
+      product.description = this.description;
+      product.urlImage = this.urlImage;
+      product.unitValue = this.unitValue;
+      return product;
+    }
   }
 }
