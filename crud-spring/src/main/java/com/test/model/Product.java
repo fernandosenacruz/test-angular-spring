@@ -30,45 +30,46 @@ public class Product {
   @Column(nullable = false)
   private String urlImage;
 
+  @Column(length = 10, nullable = false)
   private Double unitValue;
 
-public Object getName() {
-	// TODO Auto-generated method stub
-	return null;
-}
+  public Long getId() {
+    return id;
+  }
 
-public void setName(Object name2) {
-	// TODO Auto-generated method stub
-	
-}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-public Object getDescription() {
-	// TODO Auto-generated method stub
-	return null;
-}
+  public String getName() {
+    return name;
+  }
 
-public void setDescription(Object description2) {
-	// TODO Auto-generated method stub
-	
-}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-public Object getUrlImage() {
-	// TODO Auto-generated method stub
-	return null;
-}
+  public String getDescription() {
+    return description;
+  }
 
-public void setUrlImage(Object urlImage2) {
-	// TODO Auto-generated method stub
-	
-}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-public Object getUnitValue() {
-	// TODO Auto-generated method stub
-	return null;
-}
+  public String getUrlImage() {
+    return urlImage;
+  }
 
-public void setUnitValue(Object unitValue2) {
-	// TODO Auto-generated method stub
-	
-}
+  public void setUrlImage(String urlImage) {
+    this.urlImage = urlImage;
+  }
+
+  public Double getUnitValue() {
+    return unitValue;
+  }
+
+  public void setUnitValue(Double unitValue) {
+    this.unitValue = unitValue;
+  }
 }

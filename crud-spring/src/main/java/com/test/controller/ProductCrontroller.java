@@ -32,10 +32,8 @@ public class ProductCrontroller {
   }
 
   @GetMapping("/${id}")
-  public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-    return productService.getProductById(id)
-        .map(product -> ResponseEntity.ok().body(product))
-        .orElse(ResponseEntity.notFound().build());
+  public Product getProductById(@PathVariable Long id) {
+    return productService.getProductById(id);
   }
 
   @PostMapping
@@ -45,18 +43,15 @@ public class ProductCrontroller {
   }
 
   @PutMapping("/${id}")
-  public ResponseEntity<Product> update(
+  public Product update(
       @PathVariable() Long id,
       @RequestBody Product product) {
-    return productService.update(id, product)
-        .map(p -> {return ResponseEntity.ok().body(p);})
-        .orElse(ResponseEntity.notFound().build());
+    return productService.update(id, product);
   }
 
   @DeleteMapping("/${id")
-  public ResponseEntity<Void> delete(@PathVariable() Long id) {
-    if (productService.delete(id)) return ResponseEntity.noContent().<Void>build();
-    
-    return ResponseEntity.notFound().build();
+  @ResponseStatus(code = HttpStatus.NO_CONTENT)
+  public void delete(@PathVariable() Long id) {
+    productService.delete(id);
   }
 }

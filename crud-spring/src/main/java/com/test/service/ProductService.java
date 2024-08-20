@@ -1,7 +1,6 @@
 package com.test.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.test.model.Product;
 import com.test.repository.ProductRepository;
+
+import exception.RecordNotFoundException;
 
 @Service
 public class ProductService {
@@ -22,15 +23,16 @@ public class ProductService {
 	    return productRepository.findAll();
 	}
 	
-	public Optional<Product> getProductById(@PathVariable Long id) {
-	    return productRepository.findById(id);
+	public Product getProductById(@PathVariable Long id) {
+	    return productRepository.findById(id)
+	    		.orElseThrow(() -> new RecordNotFoundException(id));
 	}
 	
 	public Product create(@RequestBody Product product) {
 	    return productRepository.save(product);
 	}
 	
-	public Optional<Product> update(
+	public Product update(
 	  @PathVariable() Long id,
 	  @RequestBody Product product) {
 	    return productRepository.findById(id)
@@ -41,15 +43,11 @@ public class ProductService {
 	          p.setUnitValue(p.getUnitValue());
 	
 	          return productRepository.save(p);
-        });
+        }).orElseThrow(() -> new RecordNotFoundException(id));
 	}
 
-	public boolean delete(@PathVariable() Long id) {
-	    return productRepository.findById(id)
-	        .map(product -> {
-	          productRepository.deleteById(id);
-	          return true;
-	        })
-	        .orElse(false);
+	public void delete(@PathVariable() Long id) {
+	    productRepository.delete(productRepository.findById(id)
+	    		.orElseThrow(() -> new RecordNotFoundException(id)));
 	}
 }
