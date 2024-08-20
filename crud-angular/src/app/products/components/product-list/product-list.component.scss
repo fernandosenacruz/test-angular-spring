@@ -1,0 +1,29 @@
+.product-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-description {
+  border: 1px solid #f8f6f4e1;
+  background-color: #f8f6f4e1;
+  border-radius: 3px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13rem;
+  height: 4rem;
+  max-height: 4rem;
+}
+
+.buttons-card {
+  align-self: flex-end;
+}

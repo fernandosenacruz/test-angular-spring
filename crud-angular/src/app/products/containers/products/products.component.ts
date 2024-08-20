@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { Product } from './interfaces/product';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   products$: Observable<Product[]> | null = null;
 
   constructor(
@@ -43,8 +43,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
-
   onEdit(product: Product) {
     this.router.navigate(['edit', product._id], { relativeTo: this.route });
   }
@@ -63,19 +61,21 @@ export class ProductsComponent implements OnInit {
       `,
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result) {
-        this.ProductsService.remove(product._id).subscribe(
-          () => {
-            this.refresh();
-            this.snackBar.open('Produto removido!', 'X', {
-              duration: 3000,
-              verticalPosition: 'top',
-              horizontalPosition: 'center',
-            });
-          },
-          () => this.onError('Erro! Entre em contato com o suporte.')
-        );
+    dialogRef.afterClosed().subscribe({
+      next: (result: boolean) => {
+        if (result) {
+          this.ProductsService.remove(product._id).subscribe({
+            next: () => {
+              this.refresh();
+              this.snackBar.open('Produto removido!', 'X', {
+                duration: 3000,
+                verticalPosition: 'top',
+                horizontalPosition: 'center',
+              });
+            },
+            error: () => this.onError('Erro! Entre em contato com o suporte.')
+          });
+        }
       }
     });
   }
