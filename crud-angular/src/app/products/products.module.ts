@@ -8,9 +8,15 @@ import { FormProductComponent } from './components/form-product/form-product.com
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductsComponent } from './containers/products/products.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { ProductCardSkeletonComponent } from './components/product-card-skeleton/product-card-skeleton.component';
 
 @NgModule({
-  declarations: [ProductsComponent, FormProductComponent, ProductListComponent],
+  declarations: [
+    ProductsComponent,
+    FormProductComponent,
+    ProductListComponent,
+    ProductCardSkeletonComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -18,6 +24,6 @@ import { ProductsRoutingModule } from './products-routing.module';
     ReactiveFormsModule,
     ProductsRoutingModule,
   ],
-  exports: [ProductsComponent],
+  exports: [ProductsComponent, ProductCardSkeletonComponent],
 })
 export class ProductsModule {}
