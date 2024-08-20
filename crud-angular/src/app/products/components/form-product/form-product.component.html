@@ -8,22 +8,22 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nome</mat-label>
         <input matInput #name formControlName="name" />
-        <mat-hint style="align-items: end;">
+        <mat-hint style="align-items: end">
           {{ name.value.length || 0 }} / 100
         </mat-hint>
         <mat-error *ngIf="form.get('name')?.invalid">
-          {{ getErrorMassage('name') }}
+          {{ getErrorMassage("name") }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Descrição</mat-label>
         <input matInput #description formControlName="description" />
-        <mat-hint style="align-items: end;">
+        <mat-hint style="align-items: end">
           {{ description.value.length || 0 }} / 255
         </mat-hint>
         <mat-error *ngIf="form.get('description')?.invalid">
-          {{ getErrorMassage('description') }}
+          {{ getErrorMassage("description") }}
         </mat-error>
       </mat-form-field>
 
@@ -31,7 +31,7 @@
         <mat-label>URL da Imagem</mat-label>
         <input matInput #urlImage formControlName="urlImage" />
         <mat-error *ngIf="form.get('urlImage')?.invalid">
-          {{ getErrorMassage('urlImage') }}
+          {{ getErrorMassage("urlImage") }}
         </mat-error>
       </mat-form-field>
 
@@ -39,7 +39,7 @@
         <mat-label>Valor Unitário</mat-label>
         <input matInput #unitValue type="number" formControlName="unitValue" />
         <mat-error *ngIf="form.get('unitValue')?.invalid">
-          {{ getErrorMassage('unitValue') }}
+          {{ getErrorMassage("unitValue") }}
         </mat-error>
       </mat-form-field>
     </form>
@@ -47,6 +47,14 @@
 
   <mat-card-actions>
     <button mat-raised-button color="warn" (click)="onClear()">Limpar</button>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Cadastrar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Cadastrar
+    </button>
   </mat-card-actions>
 </mat-card>
