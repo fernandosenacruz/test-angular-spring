@@ -14,26 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.test.model.Product;
-import com.test.repository.ProductRepository;
+import com.test.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductCrontroller {
 
-  private final ProductRepository productRepository;
+  private final ProductService productService;
 
-  public ProductCrontroller(ProductRepository productRepository) {
-    this.productRepository = productRepository;
+  public ProductCrontroller(ProductService productService) {
+    this.productService = productService;
   }
 
   @GetMapping
   public List<Product> getProducts() {
-    return productRepository.findAll();
+    return productService.getProducts();
   }
 
   @GetMapping("/${id}")
   public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-    return productRepository.findById(id)
+    return productService.getProductById(id)
         .map(product -> ResponseEntity.ok().body(product))
         .orElse(ResponseEntity.notFound().build());
   }
@@ -41,35 +41,22 @@ public class ProductCrontroller {
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
   public Product create(@RequestBody Product product) {
-    return productRepository.save(product);
+    return productService.create(product);
   }
 
   @PutMapping("/${id}")
   public ResponseEntity<Product> update(
       @PathVariable() Long id,
       @RequestBody Product product) {
-    return productRepository.findById(id)
-        .map(p -> {
-          p.setName(p.getName());
-          p.setDescription(p.getDescription());
-          p.setUrlImage(p.getUrlImage());
-          p.setUnitValue(p.getUnitValue());
-
-          Product updatedProduct = productRepository.save(p);
-
-          return ResponseEntity.ok().body(updatedProduct);
-        })
+    return productService.update(id, product)
+        .map(p -> {return ResponseEntity.ok().body(p);})
         .orElse(ResponseEntity.notFound().build());
   }
 
   @DeleteMapping("/${id")
   public ResponseEntity<Void> delete(@PathVariable() Long id) {
-    return productRepository.findById(id)
-        .map(product -> {
-          productRepository.deleteById(id);
-
-          return ResponseEntity.noContent().<Void>build();
-        })
-        .orElse(ResponseEntity.notFound().build());
+    if (productService.delete(id)) return ResponseEntity.noContent().<Void>build();
+    
+    return ResponseEntity.notFound().build();
   }
 }
