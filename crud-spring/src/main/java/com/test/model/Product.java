@@ -1,12 +1,17 @@
 package com.test.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.enums.Category;
@@ -37,6 +42,9 @@ public class Product {
   @Column(nullable = false)
   @Convert(converter = CategoryConverter.class)
   private Category category;
+  
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
+  private List<Tag> tags = new ArrayList<>();
 
   public Long getId() {
 	  return id;
@@ -85,6 +93,14 @@ public class Product {
   
   public void setCategory(Category category) {
 	  this.category = category;
+  }
+  
+  public List<Tag> getTags() {
+	  return tags;
+  }
+  
+  public void setTags(List<Tag> tags) {
+	  this.tags = tags;
   }
   
   private Product() {}
