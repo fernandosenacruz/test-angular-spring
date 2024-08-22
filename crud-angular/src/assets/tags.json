@@ -1,0 +1,12 @@
+[
+  {
+    "_id": 1,
+    "name": "oferta",
+    "status": 1
+  },
+  {
+    "_id": 2,
+    "name": "lançamento",
+    "status": 1
+  }
+]

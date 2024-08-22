@@ -37,10 +37,50 @@
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Valor Unitário</mat-label>
-        <input matInput #unitValue type="number" formControlName="unitValue" />
+        <input
+          matInput
+          #unitValue
+          type="number"
+          formControlName="unitValue"
+          required="unitValue.value === 0"
+        />
         <mat-error *ngIf="form.get('unitValue')?.invalid">
           {{ getErrorMassage("unitValue") }}
         </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipTags aria-label="Tags">
+          @for (tag of tags(); track $index) {
+          <mat-chip-row (removed)="remove(tag)">
+            {{ tag.name }}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          }
+        </mat-chip-grid>
+        <input
+          #tagInput
+          matInput
+          name="currentTag"
+          placeholder="Adicionar uma tag..."
+          formControlName="currentTag"
+          [matChipInputFor]="chipTags"
+          [matAutocomplete]="auto"
+        />
+        <mat-error *ngIf="form.get('tags')?.invalid">
+          {{ getErrorMassage("currentTag") }}
+        </mat-error>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option *ngFor="let tag of filteredTags() | async" [value]="tag">
+            {{ tag.name }}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </form>
   </mat-card-content>

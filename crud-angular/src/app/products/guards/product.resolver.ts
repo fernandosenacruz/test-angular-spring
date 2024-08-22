@@ -1,7 +1,7 @@
 import { Product } from './../containers/products/interfaces/product';
 import { ProductsService } from './../services/products.service';
 import { Injectable } from '@angular/core';
-import { Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,6 @@ export class ProductResolver  {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
   ): Observable<Product> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
@@ -23,6 +22,7 @@ export class ProductResolver  {
       description: '',
       urlImage: '',
       unitValue: 0,
+      tags: [],
     });
   }
 }

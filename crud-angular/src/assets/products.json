@@ -1,23 +1,26 @@
 [
-  {
-    "_id": 1,
-    "name": "produto 01",
-    "description": "produto de exemplo 01",
-    "urlImage": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
-    "unitValue": 4084.90
-  },
-  {
-    "_id": 2,
-    "name": "produto 02",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
-    "urlImage": "https://http2.mlstatic.com/D_NQ_NP_925574-MLA51178257760_082022-W.jpg",
-    "unitValue": 229.99
-  },
-  {
-    "_id": 3,
-    "name": "produto 03",
-    "description": "produto de exemplo 03",
-    "urlImage": "https://cdn.nerdstore.com.br/wp-content/uploads/2022/02/vitrine-camiseta-ximira-xelo-estampa-nerdstore.jpg",
-    "unitValue": 99.90
-  }
-]
+    {
+      "_id": 1,
+      "name": "produto 01",
+      "description": "produto de exemplo 01",
+      "urlImage": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$",
+      "unitValue": 4084.90,
+      "tags": [{"_id": 1, "name": "oferta"}, { "_id": 2, "name": "lançamento"}]
+    },
+    {
+      "_id": 2,
+      "name": "produto 02",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,",
+      "urlImage": "https://http2.mlstatic.com/D_NQ_NP_925574-MLA51178257760_082022-W.jpg",
+      "unitValue": 229.99,
+      "tags": [{"_id": 1, "name": "oferta"}]
+    },
+    {
+      "_id": 3,
+      "name": "produto 03",
+      "description": "produto de exemplo 03",
+      "urlImage": "https://cdn.nerdstore.com.br/wp-content/uploads/2022/02/vitrine-camiseta-ximira-xelo-estampa-nerdstore.jpg",
+      "unitValue": 99.90,
+      "tags": [{ "_id": 2, "name": "lançamento"}]
+    }
+  ]

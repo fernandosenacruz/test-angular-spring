@@ -23,6 +23,11 @@
   >
     {{ product.description }}
   </mat-card-content>
+  <mat-list class="tags">
+    @for (tag of product.tags; track tag) {
+    <span matListItemLine class="tag">#{{ tag.name }}</span>
+    }
+  </mat-list>
   <div class="buttons-card">
     <button
       mat-icon-button

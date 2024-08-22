@@ -13,6 +13,7 @@ export class ProductCardSkeletonComponent {
     description: '',
     unitValue: 0,
     urlImage: '',
+    tags: []
   }
 
   products: Product[] = new Array(5).fill(this.product);
