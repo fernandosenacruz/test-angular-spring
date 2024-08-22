@@ -11,7 +11,7 @@ import com.test.dto.ProductDTO;
 import com.test.dto.mapper.ProductMapper;
 import com.test.repository.ProductRepository;
 
-import exception.RecordNotFoundException;
+import com.test.exception.RecordNotFoundException;
 
 @Service
 public class ProductService {
@@ -49,6 +49,7 @@ public class ProductService {
 	          p.setDescription(p.getDescription());
 	          p.setUrlImage(p.getUrlImage());
 	          p.setUnitValue(p.getUnitValue());
+	          p.setCategory(p.getCategory());
 	
 	          return productMapper.toDTO(productRepository.save(p));
         }).orElseThrow(() -> new RecordNotFoundException(id));

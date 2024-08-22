@@ -1,16 +1,18 @@
 package com.test.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.test.enums.Category;
+import com.test.enums.convertes.CategoryConverter;
 
-@Data
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -31,9 +33,13 @@ public class Product {
 
   @Column(length = 10, nullable = false)
   private double unitValue;
+  
+  @Column(nullable = false)
+  @Convert(converter = CategoryConverter.class)
+  private Category category;
 
   public Long getId() {
-    return id;
+	  return id;
   }
 
   public void setId(Long id) {
@@ -41,35 +47,44 @@ public class Product {
   }
 
   public String getName() {
-    return name;
+	  return name;
   }
 
   public void setName(String name) {
-    this.name = name;
+	  this.name = name;
   }
 
   public String getDescription() {
-    return description;
+	  return description;
   }
+  
 
   public void setDescription(String description) {
-    this.description = description;
+	  this.description = description;
   }
 
   public String getUrlImage() {
-    return urlImage;
+	  return urlImage;
   }
 
   public void setUrlImage(String urlImage) {
-    this.urlImage = urlImage;
+	  this.urlImage = urlImage;
   }
 
   public double getUnitValue() {
-    return unitValue;
+	  return unitValue;
   }
 
   public void setUnitValue(Double unitValue) {
-    this.unitValue = unitValue;
+	  this.unitValue = unitValue;
+  }
+  
+  public Category getCategory() {
+	  return category;
+  }
+  
+  public void setCategory(Category category) {
+	  this.category = category;
   }
   
   private Product() {}
@@ -84,6 +99,7 @@ public class Product {
     private String description;
     private String urlImage;
     private Double unitValue;
+    private Category category;
 
     public Builder id(Long id) {
       this.id = id;
@@ -109,6 +125,11 @@ public class Product {
       this.unitValue = unitValue;
       return this;
     }
+    
+    public Builder category(Category category) {
+        this.category = category;
+        return this;
+      }
 
     public Product build() {
       Product product = new Product();
@@ -117,6 +138,7 @@ public class Product {
       product.description = this.description;
       product.urlImage = this.urlImage;
       product.unitValue = this.unitValue;
+      product.category = this.category;
       return product;
     }
   }

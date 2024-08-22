@@ -15,7 +15,8 @@ public class ProductMapper {
 				product.getName(),
 				product.getDescription(),
 				product.getUrlImage(),
-				product.getUnitValue()
+				product.getUnitValue(),
+				product.getCategory()				
 				);
 	}
 	
@@ -28,6 +29,7 @@ public class ProductMapper {
 				.description(productDTO.description())
 				.urlImage(productDTO.urlImage())
 				.unitValue(productDTO.unitValue())
+				.category(productDTO.category())
 				.build();
 	}
 }
