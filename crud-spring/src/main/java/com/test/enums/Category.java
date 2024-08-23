@@ -1,22 +1,21 @@
 package com.test.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Category {
 	GAMES("GAMES"),
 	SPORTS("SPORTS"),
 	FASHION("FASHION"),
-	DECORATIO("DECORATION");
+	DECORATION("DECORATION");
 	
-	private String value;
+	private final String value;
 	
 	private Category(String value) {
 		this.value = value;
 	}
-	
-	public String getValue() {
-		return value;
-	}
-	
-	@Override
+
+    @Override
 	public String toString() {
 		return value;
 	}

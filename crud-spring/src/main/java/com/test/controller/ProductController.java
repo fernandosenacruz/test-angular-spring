@@ -18,11 +18,11 @@ import com.test.service.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
-public class ProductCrontroller {
+public class ProductController {
 
   private final ProductService productService;
 
-  public ProductCrontroller(ProductService productService) {
+  public ProductController(ProductService productService) {
     this.productService = productService;
   }
 

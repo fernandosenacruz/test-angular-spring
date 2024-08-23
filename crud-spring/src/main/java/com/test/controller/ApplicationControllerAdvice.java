@@ -12,7 +12,7 @@ public class ApplicationControllerAdvice {
 	
 	@ExceptionHandler(RecordNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public String handleNotFoundExceptino(RecordNotFoundException e) {
+	public String handleNotFoundException(RecordNotFoundException e) {
 		return e.getMessage();
 	}
 }
