@@ -10,15 +10,23 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Setter
+@Getter
 @Entity
 public class Tag {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty("_id")
 	private Long id;
 	
-	@Column(length = 50, nullable = false)
+	@Setter
+    @Getter
+    @Column(length = 50, nullable = false)
 	private String name;
 	
 	@Column(length = 1,  nullable = false)
@@ -28,32 +36,4 @@ public class Tag {
 	@JoinColumn(name = "product_id", nullable = false)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Product product;
-	
-	public void setId(Long id) {
-	    this.id = id;
-	  }
-
-	  public String getName() {
-		  return name;
-	  }
-
-	  public void setName(String name) {
-		  this.name = name;
-	  }
-
-	  public byte getStatus() {
-		  return status;
-	  }
-	  
-	  public void getStatus(byte status) {
-		  this.status = status;
-	  }
-	  
-	  public Product getProduct() {
-		  return product;
-	  }
-	  
-	  public void setProduct(Product product) {
-		  this.product = product;
-	  }
 }

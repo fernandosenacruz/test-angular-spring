@@ -16,8 +16,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.enums.Category;
 import com.test.enums.convertes.CategoryConverter;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "products")
 public class Product {
@@ -46,64 +49,7 @@ public class Product {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "product")
   private List<Tag> tags = new ArrayList<>();
 
-  public Long getId() {
-	  return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-	  return name;
-  }
-
-  public void setName(String name) {
-	  this.name = name;
-  }
-
-  public String getDescription() {
-	  return description;
-  }
-  
-
-  public void setDescription(String description) {
-	  this.description = description;
-  }
-
-  public String getUrlImage() {
-	  return urlImage;
-  }
-
-  public void setUrlImage(String urlImage) {
-	  this.urlImage = urlImage;
-  }
-
-  public double getUnitValue() {
-	  return unitValue;
-  }
-
-  public void setUnitValue(Double unitValue) {
-	  this.unitValue = unitValue;
-  }
-  
-  public Category getCategory() {
-	  return category;
-  }
-  
-  public void setCategory(Category category) {
-	  this.category = category;
-  }
-  
-  public List<Tag> getTags() {
-	  return tags;
-  }
-  
-  public void setTags(List<Tag> tags) {
-	  this.tags = tags;
-  }
-  
-  private Product() {}
+  public Product() {}
 
   public static Builder builder() {
     return new Builder();
